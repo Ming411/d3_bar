@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        constructor() {}
+        bar(payload) {
+          console.log(payload);
+        }
+        set baz(payload) {
+          console.log(payload);
+        }
+        static foo(payload) {
+          console.log(payload);
+        }
+      }
+
+      const p = new Person();
+      p.bar(222);
+      p.baz = 1111;
+    </script>
+  </body>
+</html>

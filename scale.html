@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.6.1/dist/d3.min.js"></script>
+  <style>
+    div svg {
+      display: block;
+      margin: 40px auto 0;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="svg"></div>
+  <script>
+    const width = 700
+    const height = 400
+    const rectstep = 40
+    const rectWidth = 30
+    const data = [10, 50, 280, 122, 90, 230, 250, 500]
+    const margin = { left: 20, right: 20, top: 20, bottom: 20 }
+
+    // 定义线性比例尺
+    const linear = d3.scaleLinear().domain([0, d3.max(data)]).range([0, 300])
+    // 当最大值和最小值差距过大时，使用比例尺
+    // 最后显示结果都会限制在range敢为内
+
+
+    d3.select('#svg').append('svg')
+      .attr('width', width)
+      .attr('height', height)
+
+    d3.select('svg').selectAll('rect').data(data)
+      .enter().append('rect')
+      .attr('x', (d, i) => margin.left + i * rectstep)
+      // .attr('y', d => height - d)
+      .attr('y', d => height - linear(d))
+      .attr('width', rectWidth)
+      .attr('height', d => d)
+      .attr('fill', 'red')
+
+    d3.select('svg').selectAll('text').data(data)
+      .enter().append('text')
+      .attr('x', (d, i) => margin.left + i * rectstep)
+      // .attr('y', d => height - d - 5)
+      .attr('y', d => height - linear(d) - 5)
+      .attr('fill', '#666')
+      .attr('font-size', 20)
+      .attr('text-anchor', 'middle') // 文字基于坐标点居中
+      .attr('transform', `translate(${rectWidth / 2})`) // 偏移
+      .text(d => d)
+
+
+  </script>
+</body>
+
+</html>

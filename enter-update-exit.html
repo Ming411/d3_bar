@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.6.1/dist/d3.min.js"></script>
+</head>
+
+<body>
+  <P></P>
+  <P></P>
+  <P></P>
+  <script>
+    const data = [1, 2, 3, 4, 5]
+    const allP = d3.selectAll('body p')
+    const update = allP.data(data) // 获取需要更新的元素
+    update.text(d => '更新' + d)
+    /* 数据比元素多就需要新增 */
+    const enter = update.enter() // 新增元素
+    enter.append('p').text(d => '新增' + d) </script>
+</body>
+
+</html>
